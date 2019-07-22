@@ -39,7 +39,6 @@ test('basic BFS', () => {
     [2, 2, 0],
     [2, 0, 1]
   ];
-
   let actual = floodFill(image, row, col, newColor);
   expect(actual).toStrictEqual(expected);
 });
