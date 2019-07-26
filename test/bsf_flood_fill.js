@@ -64,6 +64,6 @@ describe('Flood fill', () => {
       [1, 2, 0],
       [1, 0, 1]
     ];
-    assertFloodFill(image, row, col, newColor, expected, 'Basic');
+    assertFloodFill(image, row, col, newColor, expected, 'Only 1');
   }
 });
