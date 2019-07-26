@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "mocha --require @babel/register"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,14 @@
   },
   "homepage": "https://github.com/RodriguezLucha/Katas#readme",
   "dependencies": {
-    "eslint-plugin-jest": "^22.13.0",
-    "jest": "^24.8.0"
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/register": "^7.5.5",
+    "babel-eslint": "^10.0.2",
+    "chai": "^4.2.0",
+    "chai-spies": "^1.0.0",
+    "eslint": "^6.1.0",
+    "eslint-plugin-mocha": "^6.0.0",
+    "mocha": "^6.2.0"
   }
 }

@@ -1,15 +1,16 @@
 {
-    "plugins": [
-        "jest"
-    ],
+    "parser": "babel-eslint",
     "env": {
         "amd": true,
         "node": true,
         "browser": true,
         "jquery": true,
         "es6": true,
-        "jest/globals": true
+        "mocha": true
     },
+    "plugins": [
+        "mocha"
+    ],
     "parserOptions": {
         "ecmaVersion": 6,
         "sourceType": "module",
@@ -19,15 +20,13 @@
         }
     },
     "extends": [
-        "eslint:recommended",
-        "plugin:jest/all"
+        "eslint:recommended"
     ],
     "rules": {
         "indent": [
             "error",
             2
         ],
-        "jest/prefer-expect-assertions": 0,
         "no-trailing-spaces": "error",
         "no-var": "error",
         "no-multiple-empty-lines": "error",
