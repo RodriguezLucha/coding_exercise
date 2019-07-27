@@ -2,23 +2,30 @@ const chai = require('chai');
 const expect = chai.expect;
 
 const asteroidCollision = astroids => {
-  let res = [];
-  for(let i = 0; i < astroids.length; i++){
-    if(astroids[i] > 0){
-      res.push(astroids[i]);
-    }else{
-      while(res.length > 0 && res[res.length - 1] > 0 &&  res[res.length - 1] < Math.abs(astroids[i])){
-        res.pop();
-      }
-      if(res.length == 0 || res[res.length - 1] < 0){
-        res.push(astroids[i]);
-      }
-      if(res[res.length - 1] > 0 && res[res.length - 1] == Math.abs(astroids[i])){
-        res.pop();
-      }
+  let stack = [];
+
+  const canReduceStack = () => {
+    if(stack.length < 2) return false;
+    let [current, previous] = [stack[stack.length - 1], stack[stack.length - 2]];
+    return current < 0 && previous > 0;
+  };
+
+  const reduceStack = () => {
+    let [curr, prev] = [stack.pop(), stack.pop()];
+    let [acurr, aprev] = [Math.abs(curr), Math.abs(prev)];
+    if(acurr === aprev) return;
+    if(acurr > aprev) stack.push(curr);
+    if(acurr < aprev) stack.push(prev);
+  };
+
+  astroids.forEach(current => {
+    stack.push(current);
+    while(canReduceStack()){
+      reduceStack();
     }
-  }
-  return res;
+  });
+
+  return stack;
 };
 
 const assertAstroid = (astroids, expected, message) => {
@@ -36,4 +43,5 @@ describe('Astroid Collision', () => {
   assertAstroid([5, 10, -5], [5, 10], 'Example 1');
   assertAstroid([8, -8], [], 'Example 2');
   assertAstroid([10, 2, -5], [10], 'Example 3');
+  assertAstroid([-2, -1, 1, 2], [-2, -1, 1, 2], 'no collisions');
 });
