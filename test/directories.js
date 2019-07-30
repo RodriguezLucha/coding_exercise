@@ -4,6 +4,7 @@ const expect = chai.expect;
 const CREATE = 'CREATE';
 const LIST = 'LIST';
 const MOVE = 'MOVE';
+const DELETE = 'DELETE';
 
 const parseLine = (line) => {
   let cmd = null;
@@ -37,24 +38,14 @@ const runCommands = (input) => {
       }
       return dfs(dir[path[0]], path.slice(1));
     };
-
     let [fromParent, fromPointer] = dfs(directories, from.split('/'));
     let [toParent, toPointer] = dfs(directories, to.split('/'));
-
-    // console.log(`from: ${from} to: ${to}\n before: ${JSON.stringify(directories, null, 2)}\n`);
-    // console.log(`fromPointer: ${JSON.stringify(fromPointer)} fromParent: ${JSON.stringify(fromParent)}`);
-    // console.log(`toPointer: ${JSON.stringify(toPointer)} toParent: ${JSON.stringify(toParent)}`);
     let lastFrom = from.split('/')[from.split('/').length - 1];
     let lastTo = to.split('/')[to.split('/').length - 1];
-
-    // console.log(`Before: ${JSON.stringify(directories, null, 2)}`);
-
     let copy = {};
     copy[lastFrom] = fromPointer;
     toParent[lastTo] = Object.assign(toParent[lastTo], JSON.parse(JSON.stringify(copy)));
     delete fromParent[lastFrom];
-    // console.log(`After: ${JSON.stringify(directories, null, 2)}`);
-
     return;
   };
 
@@ -65,31 +56,35 @@ const runCommands = (input) => {
         dfs(tabCount + 1, pointer[dir]);
       });
     };
-
     dfs(0, directories);
+  };
+  const handleDelete = (given) => {
+    let fullpath = given.split('/');
+    let pointer = directories;
+    while(fullpath.length > 1){
+      let path = fullpath.shift();
+      if(pointer[path])
+        pointer = pointer[path];
+      else{
+        result.push(`Cannot delete ${given} - ${path} does not exist`);
+        return;
+      }
+    }
+    delete pointer[fullpath[0]];
   };
 
   const handleLine = (line) => {
     let[cmd, args] = parseLine(line);
-
-    if(cmd === CREATE){
-      handleCreate(args[0]);
-    }
-    if(cmd === LIST){
-      handleList(args[0]);
-    }
-    if(cmd === MOVE){
-      handleMove(args[0], args[1]);
-    }
+    if(cmd === CREATE) handleCreate(args[0]);
+    if(cmd === LIST) handleList(args[0]);
+    if(cmd === MOVE) handleMove(args[0], args[1]);
+    if(cmd === DELETE) handleDelete(args[0]);
   };
 
   lines.forEach(line => {
     result.push(line);
     handleLine(line);
   });
-
-  // console.log(directories);
-
   return result.join('\n');
 };
 
@@ -202,7 +197,7 @@ LIST
 DELETE fruits/apples
 DELETE foods/fruits/apples
 LIST
-  `;
+`;
 
     let expected = `
 CREATE fruits
