@@ -8,9 +8,7 @@ sub myReverse {
     my $high = scalar(@str) - 1;
 
     while ( $low < $high ) {
-
         ( $str[$low], $str[$high] ) = ( $str[$high], $str[$low] );
-
         $low++;
         $high--;
     }
