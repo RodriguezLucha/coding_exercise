@@ -1,3 +1,8 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use version; our $VERSION = qv('1.0.0');
+
 use Test::More;
 
 sub permutations {
@@ -6,11 +11,11 @@ sub permutations {
 
     my @results = ();
     my @arr     = split //sm, $str;
-    for ( my $i = 0 ; $i <= $#arr ; $i++ ) {
+    for my $i ( 0 .. $#arr ) {
         my $char      = $arr[$i];
         my @remaining = ( @arr[ 0 .. $i - 1 ], @arr[ $i + 1 .. $#arr ] );
 
-        my @perms = permutations( join '', @remaining );
+        my @perms = permutations( join q{}, @remaining );
 
         for my $p (@perms) {
             push @results, $char . $p;
@@ -20,19 +25,21 @@ sub permutations {
     return @results;
 }
 
-sub assertPermutations {
+sub assert_permutations {
     my ( $str, $expected, $message ) = @_;
     my @got = permutations($str);
     is_deeply( \@got, $expected, $message );
+    return;
 }
 
-assertPermutations( '',  [''],  'empty string' );
-assertPermutations( 'a', ['a'], 'one character' );
-assertPermutations( 'ab', [ 'ab', 'ba' ], 'two characters' );
-assertPermutations(
+assert_permutations( q{}, [q{}], 'empty string' );
+assert_permutations( 'a', ['a'], 'one character' );
+assert_permutations( 'ab', [ 'ab', 'ba' ], 'two characters' );
+assert_permutations(
     'abc',
     [ 'abc', 'acb', 'bac', 'bca', 'cab', 'cba' ],
     'three characters'
 );
 
 done_testing;
+1;
