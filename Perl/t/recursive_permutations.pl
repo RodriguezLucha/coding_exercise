@@ -2,7 +2,7 @@ use Test::More;
 
 sub permutations {
     my $str = shift;
-    if ( length($str) <= 1 ) { return [$str] }
+    if ( length($str) <= 1 ) { return ($str) }
 
     my @results = ();
     my @arr     = split //sm, $str;
@@ -10,20 +10,20 @@ sub permutations {
         my $char      = $arr[$i];
         my @remaining = ( @arr[ 0 .. $i - 1 ], @arr[ $i + 1 .. $#arr ] );
 
-        my $perms = permutations( join '', @remaining );
+        my @perms = permutations( join '', @remaining );
 
-        for my $p ( @{$perms} ) {
+        for my $p (@perms) {
             push @results, $char . $p;
         }
     }
 
-    return \@results;
+    return @results;
 }
 
 sub assertPermutations {
     my ( $str, $expected, $message ) = @_;
-    my $got = permutations($str);
-    is_deeply( $got, $expected, $message );
+    my @got = permutations($str);
+    is_deeply( \@got, $expected, $message );
 }
 
 assertPermutations( '',  [''],  'empty string' );
