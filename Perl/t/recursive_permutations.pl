@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use version; our $VERSION = qv('1.0.0');
 
-use Test::More;
+use Test::More::Behaviour;
 
 sub permutations {
     my $str = shift;
@@ -27,19 +27,22 @@ sub permutations {
 
 sub assert_permutations {
     my ( $str, $expected, $message ) = @_;
-    my @got = permutations($str);
-    is_deeply( \@got, $expected, $message );
-    return;
+    it $message => sub {
+        my @got = permutations($str);
+        is_deeply( \@got, $expected );
+    };
 }
 
-assert_permutations( q{}, [q{}], 'empty string' );
-assert_permutations( 'a', ['a'], 'one character' );
-assert_permutations( 'ab', [ 'ab', 'ba' ], 'two characters' );
-assert_permutations(
-    'abc',
-    [ 'abc', 'acb', 'bac', 'bca', 'cab', 'cba' ],
-    'three characters'
-);
+describe 'Permutations' => sub {
+    assert_permutations( q{}, [q{}], 'empty string' );
+    assert_permutations( 'a', ['a'], 'one character' );
+    assert_permutations( 'ab', [ 'ab', 'ba' ], 'two characters' );
+    assert_permutations(
+        'abc',
+        [ 'abc', 'acb', 'bac', 'bca', 'cab', 'cba' ],
+        'three characters'
+    );
+};
 
 done_testing;
 1;
