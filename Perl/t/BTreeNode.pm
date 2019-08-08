@@ -105,10 +105,22 @@ describe 'BTreeNode' => sub {
         $node_3->{left}  = $node_4;
         $node_3->{right} = $node_5;
 
+        #   1__
+        #  /   \
+        # 2     3
+        #      / \
+        #     4   5
         my @serialized = $node_1->serialize();
         is_deeply( \@serialized, [ 1, 2, 3, undef, undef, 4, 5 ] );
     };
     it 'deserializes' => sub {
+
+        #   1__
+        #  /   \
+        # 2     3
+        #      / \
+        #     4   5
+
         my @serialized = ( 1, 2, 3, undef, undef, 4, 5 );
         my $root       = BTreeNode->deserialize(@serialized);
 
