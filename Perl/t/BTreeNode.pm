@@ -4,9 +4,6 @@ use strict;
 use warnings;
 use version; our $VERSION = qv('1.0.0');
 
-use Test::More::Behaviour;
-use Data::Dumper;
-
 sub new {
     my $class = shift;
     my $self  = {@_};
@@ -74,6 +71,9 @@ sub deserialize {
     return $node_list[0];
 }
 
+return 1 unless $0 eq __FILE__;
+
+use Test::More::Behaviour;
 describe 'BTreeNode' => sub {
     it 'can be created' => sub {
         my $node = BTreeNode->new( val => 1 );
