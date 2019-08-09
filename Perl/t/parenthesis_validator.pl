@@ -39,10 +39,9 @@ sub is_valid {
         }
         else {
             if ( is_closer($char) ) {
+                return 0 if !@stack;
                 my $last_opener = pop @stack;
-                if ( $last_opener ne $closer_to_opener{$char} ) {
-                    return 0;
-                }
+                return 0 if ( $last_opener ne $closer_to_opener{$char} );
             }
         }
     }
