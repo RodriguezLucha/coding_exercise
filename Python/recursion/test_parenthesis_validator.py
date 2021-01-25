@@ -19,11 +19,12 @@ def is_valid(input_str):
     for char in input_str:
         if is_opener(char):
             stack.append(char)
-        else:
-            if is_closer(char):
-                last_opener = stack.pop()
-                if last_opener != closer_to_opener[char]:
-                    return False
+        elif is_closer(char):
+            if not stack:
+                return False
+            last_opener = stack.pop()
+            if last_opener != closer_to_opener[char]:
+                return False
 
     return len(stack) == 0
 
@@ -40,4 +41,9 @@ def test_longer_code():
 
 def test_mismatched_opener_and_closer():
     input_str = "([sdfs][]}"
+    assert not is_valid(input_str)
+
+
+def test_first_is_not_valid():
+    input_str = ")("
     assert not is_valid(input_str)

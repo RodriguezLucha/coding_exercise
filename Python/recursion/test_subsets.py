@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+
+
 def subsets(input):
     result = []
     sub = []
