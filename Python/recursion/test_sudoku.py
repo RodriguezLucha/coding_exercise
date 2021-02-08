@@ -24,8 +24,8 @@ class Solution:
 
         candidates = []
         if empty_square:
-            for num in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]:
-                candidates.append([empty_square[0], empty_square[1], num])
+            for n in [str(i) for i in range(1, 10)]:
+                candidates.append([empty_square[0], empty_square[1], n])
 
         return candidates
 
@@ -42,8 +42,8 @@ class Solution:
             if self.grid[row][i] == char:
                 return False
 
-        def start_number(num):
-            return num - num % 3
+        def start_number(i):
+            return i - i % 3
 
         [start_row, start_col] = [start_number(row), start_number(col)]
         for r in range(start_row, start_row + 3):
