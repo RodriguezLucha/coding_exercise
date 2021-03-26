@@ -9,7 +9,7 @@ def get_permutations(s):
         perms = []
         for i in range(len(s)):
             letter = s[i]
-            rem = s[:i] + s[i+1:]
+            rem = s[:i] + s[i + 1 :]
 
             for p in get_permutations(rem):
                 perms.append(letter + p)
@@ -23,9 +23,9 @@ def test_permutations_two():
     actual = get_permutations(input_str)
     assert actual == expected
 
+
 def test_permutations_basic():
     input_str = "ABC"
     expected = ["ABC", "ACB", "BAC", "BCA", "CAB", "CBA"]
     actual = get_permutations(input_str)
     assert actual == expected
-
