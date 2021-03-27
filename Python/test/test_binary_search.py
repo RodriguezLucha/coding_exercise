@@ -1,22 +1,22 @@
 #!/usr/bin/env python
 
-class Solution(object):
 
+class Solution(object):
     def search(self, A, t):
-        l = 0
-        r = len(A) - 1
+        left = 0
+        right = len(A) - 1
 
         while True:
-            if r < l:
+            if right < left:
                 return -1
 
-            m = (l + r) // 2
+            m = (left + right) // 2
             val = A[m]
 
             if t > val:
-                l = m + 1
+                left = m + 1
             if t < val:
-                r = m - 1
+                right = m - 1
             if t == val:
                 return m
 
