@@ -1,20 +1,17 @@
 #!/usr/bin/env python
 
 
-def get_permutations(s):
-    if len(s) <= 1:
-        return [s]
-    else:
+def get_permutations(string):
+    if len(string) <= 1:
+        return [string]
+    permutations = []
+    for i in range(len(string)):
+        ith_character = string[i]
+        string_ith_removed = string[0:i] + string[i+1:]
+        for sub_permutation in get_permutations(string_ith_removed):
+            permutations.append(ith_character + sub_permutation)
 
-        perms = []
-        for i in range(len(s)):
-            letter = s[i]
-            rem = s[:i] + s[i+1:]
-
-            for p in get_permutations(rem):
-                perms.append(letter + p)
-
-        return perms
+    return permutations
 
 
 def test_permutations_two():
