@@ -29,6 +29,7 @@ def remove_duplicates_from_sorted_array(nums):
         if fast_pointer < len(nums):
             fast_pointer += 1
 
+    gd.print_filename()
     return slow_pointer + 1
 
 

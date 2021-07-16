@@ -49,6 +49,7 @@ class GraphDrawer:
     def make_html(self):
 
         html_filename = self.dir + os.path.sep + "index.html"
+        self.html_filename = html_filename
         list_string = ",".join([f"'./{i}.gv.svg'" for i in range(self.counter)])
 
         html_content = (
@@ -101,6 +102,9 @@ class GraphDrawer:
         file = open(html_filename, "w")
         file.write(html_content)
         file.close
+
+    def print_filename(self):
+        print(self.html_filename)
 
 
 # graph = Digraph(node_attr={"shape": "square"})
