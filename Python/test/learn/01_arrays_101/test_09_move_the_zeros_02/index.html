@@ -1,0 +1,43 @@
+
+            <!DOCTYPE html>
+                <html>
+                  <body>
+                    <h3 id="image_name">./0.gv.svg</h3>
+                    <div class="container">
+                      <div id="slideshow">
+                        <img src="./0.gv.svg" id="imgClickAndChange" onclick="changeImage()" />
+                      </div>
+                    </div>
+                    <script>
+                      var images_array = ['./0.gv.svg','./1.gv.svg','./2.gv.svg','./3.gv.svg','./4.gv.svg','./5.gv.svg','./6.gv.svg','./7.gv.svg','./8.gv.svg','./9.gv.svg','./10.gv.svg','./11.gv.svg','./12.gv.svg','./13.gv.svg','./14.gv.svg','./15.gv.svg','./16.gv.svg','./17.gv.svg','./18.gv.svg','./19.gv.svg','./20.gv.svg','./21.gv.svg','./22.gv.svg','./23.gv.svg','./24.gv.svg','./25.gv.svg','./26.gv.svg','./27.gv.svg','./28.gv.svg','./29.gv.svg','./30.gv.svg','./31.gv.svg','./32.gv.svg','./33.gv.svg']
+                      var index = 0
+
+                      function changeImage (dir) {
+                        var image_element = document.getElementById('imgClickAndChange')
+
+                        if (index + dir >= images_array.length) {
+                          index = 0
+                        } else if (index + dir < 0) {
+                          index = images_array.length - 1
+                        } else {
+                          index = index + dir
+                        }
+
+                        image_element.src = images_array[index]
+
+                        var image_name = document.getElementById('image_name')
+                        image_name.innerHTML = images_array[index]
+                      }
+
+                      document.onkeydown = function (e) {
+                        e = e || window.event
+                        if (e.keyCode == '37') {
+                          changeImage(-1)
+                        } else if (e.keyCode == '39') {
+                          changeImage(1)
+                        }
+                      }
+                    </script>
+                  </body>
+                </html>
+            
