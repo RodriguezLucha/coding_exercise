@@ -1,0 +1,51 @@
+digraph root {
+	graph [compound=true]
+	subgraph cluster_4lnqyw {
+		graph [label=""]
+		4 [style=invisible]
+		"n:4" [label="n:4"]
+	}
+	subgraph cluster_3xhqcs {
+		graph [label=""]
+		3 [style=invisible]
+		"n:3" [label="n:3"]
+		"result:2" [label="result:2"]
+	}
+	subgraph cluster_2jxriy {
+		graph [label=""]
+		2 [style=invisible]
+		"n:2" [label="n:2"]
+		"result:1" [label="result:1"]
+	}
+	subgraph cluster_1viigc {
+		graph [label=""]
+		1 [style=invisible]
+		"n:1" [label="n:1"]
+	}
+	subgraph cluster_0eiksg {
+		graph [label=""]
+		0 [style=invisible]
+		"n:0" [label="n:0"]
+	}
+	subgraph cluster_1bsovd {
+		graph [label=""]
+		1 [style=invisible]
+		"n:1" [label="n:1"]
+	}
+	subgraph cluster_2xchrr {
+		graph [label=""]
+		2 [style=invisible]
+		"n:2" [label="n:2"]
+		"result:1" [label="result:1"]
+	}
+	subgraph cluster_1scybs {
+		graph [label=""]
+		1 [style=invisible]
+		"n:1" [label="n:1"]
+	}
+	subgraph cluster_0jxfxv {
+		graph [label=""]
+		0 [style=invisible]
+		"n:0" [label="n:0"]
+	}
+}

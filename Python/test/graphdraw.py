@@ -1,15 +1,28 @@
 import os
 import shutil
-from pprint import pprint
-from typing import Counter
 from graphviz import Digraph
-import graphviz
+
+import random
+import string
+
+
+def get_random_string(length):
+    # choose from all lowercase letter
+    letters = string.ascii_lowercase
+    result_str = "".join(random.choice(letters) for i in range(length))
+    return result_str
 
 
 class GraphDrawer:
     def __init__(self, callers__filename__):
         self.make_directory(callers__filename__)
         self.counter = 0
+        self.variables = {}
+        self.graphs = []
+
+    def add_variables(self, variables):
+        for key, value in variables.items():
+            self.variables[key] = value
 
     def make_directory(self, callers__filename__):
         head, tail = os.path.split(callers__filename__)
@@ -19,7 +32,7 @@ class GraphDrawer:
         os.mkdir(dir)
         self.dir = dir
 
-    def draw(self, array, indexes):
+    def draw(self, array, indexes={}):
         graph = Digraph(node_attr={"shape": "square"})
         grouping = Digraph(graph_attr={"rank": "same"})
 
@@ -105,6 +118,57 @@ class GraphDrawer:
 
     def print_filename(self):
         print(self.html_filename)
+
+    def add_graph(self, graph):
+        self.graphs.append(graph)
+        pass
+
+    def draw_all(self):
+
+        root_graph = Digraph(
+            # node_attr={
+            #     "shape": "square",
+            # },
+            name="root",
+            graph_attr={"compound": "true"},
+        )
+
+        for graph in self.graphs:
+            subgraph = Digraph(
+                graph_attr={
+                    "label": "",
+                    # "style": "filled",
+                    # "color": "lightgrey",
+                },
+                name="cluster_" + str(graph.name) + str(get_random_string(5)),
+            )
+            subgraph.node(style="invisible", name=str(graph.name))
+
+            for key, value in graph.variables.items():
+                label = str(f"{key}:{value}")
+                subgraph.node(name=label, label=label)
+
+            root_graph.subgraph(subgraph)
+
+        self.make_diagram(root_graph)
+
+    def done(self):
+        self.make_html()
+
+
+class Graph:
+    def __init__(self, name, parent):
+        self.name = name
+        self.parent = parent
+        self.variables = {}
+        self.removed = False
+
+    def add_variables(self, variables):
+        for key, value in variables.items():
+            self.variables[key] = value
+
+    def remove(self):
+        self.removed = True
 
 
 # graph = Digraph(node_attr={"shape": "square"})

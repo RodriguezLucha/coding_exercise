@@ -1,13 +1,5 @@
 from test.graphdraw import GraphDrawer
 
-# void moveZeroes(vector<int>& nums) {
-#     for (int lastNonZeroFoundAt = 0, cur = 0; cur < nums.size(); cur++) {
-#         if (nums[cur] != 0) {
-#             swap(nums[lastNonZeroFoundAt++], nums[cur]);
-#         }
-#     }
-# }
-
 
 def move_the_zeros(nums):
     gd = GraphDrawer(__file__)
@@ -23,8 +15,6 @@ def move_the_zeros(nums):
     while current < len(nums):
         d()
         if nums[current] != 0:
-            # if (nums[cur] != 0) {
-            #     swap(nums[lastNonZeroFoundAt++], nums[cur]);
             temp = nums[last_non_zero_found_at]
             nums[last_non_zero_found_at] = nums[current]
             nums[current] = temp

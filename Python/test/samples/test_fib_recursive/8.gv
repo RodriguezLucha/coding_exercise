@@ -1,0 +1,40 @@
+digraph root {
+	graph [compound=true]
+	subgraph cluster_4ybvwd {
+		graph [label=""]
+		4 [style=invisible]
+		"n:4" [label="n:4"]
+	}
+	subgraph cluster_3redcy {
+		graph [label=""]
+		3 [style=invisible]
+		"n:3" [label="n:3"]
+		"result:2" [label="result:2"]
+	}
+	subgraph cluster_2rkhdy {
+		graph [label=""]
+		2 [style=invisible]
+		"n:2" [label="n:2"]
+		"result:1" [label="result:1"]
+	}
+	subgraph cluster_1eluox {
+		graph [label=""]
+		1 [style=invisible]
+		"n:1" [label="n:1"]
+	}
+	subgraph cluster_0zbgxs {
+		graph [label=""]
+		0 [style=invisible]
+		"n:0" [label="n:0"]
+	}
+	subgraph cluster_1qxilt {
+		graph [label=""]
+		1 [style=invisible]
+		"n:1" [label="n:1"]
+	}
+	subgraph cluster_2qznej {
+		graph [label=""]
+		2 [style=invisible]
+		"n:2" [label="n:2"]
+	}
+}

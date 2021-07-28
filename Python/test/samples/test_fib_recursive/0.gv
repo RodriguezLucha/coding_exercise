@@ -1,0 +1,8 @@
+digraph root {
+	graph [compound=true]
+	subgraph cluster_4nmvvv {
+		graph [label=""]
+		4 [style=invisible]
+		"n:4" [label="n:4"]
+	}
+}

@@ -1,0 +1,8 @@
+digraph {
+	node [shape=square]
+	0 [label="("]
+	{
+		graph [rank=same]
+		0
+	}
+}
