@@ -16,14 +16,14 @@ def my_draw_fib(n):
             result = n
         else:
             fib_minus_1 = recursive_fib(n - 1, g)
-            g.add_variables({"fib_minus_1": fib_minus_1})
+            g.add_variables({"fib-1": fib_minus_1})
             gd.draw_all()
             fib_minus_2 = recursive_fib(n - 2, g)
-            g.add_variables({"fib_minus_2": fib_minus_2})
+            g.add_variables({"fib-2": fib_minus_2})
             gd.draw_all()
             result = fib_minus_1 + fib_minus_2
 
-        g.add_variables({"result": result})
+        g.add_variables({"res": result})
         gd.draw_all()
 
         g.remove()

@@ -3,20 +3,27 @@ digraph root {
 	subgraph cluster__3_0 {
 		graph [label=""]
 		cluster__3_0 [style=invisible]
-		"17_n:3" [label="n:3"]
+		"21_n:3" [label="n:3"]
 	}
 	subgraph cluster__2_1 {
 		graph [label=""]
 		cluster__2_1 [style=invisible]
 		cluster__3_0 -> cluster__2_1
-		"18_n:2" [label="n:2"]
-		"19_fib_minus_1:1" [label="fib_minus_1:1"]
+		"22_n:2" [label="n:2"]
+		"23_fib-1:1" [label="fib-1:1"]
+	}
+	subgraph cluster__1_2 {
+		graph [color=lightgrey label="" style=filled]
+		cluster__1_2 [style=invisible]
+		cluster__2_1 -> cluster__1_2
+		"24_n:1" [label="n:1"]
+		"25_res:1" [label="res:1"]
 	}
 	subgraph cluster__0_5 {
 		graph [label=""]
 		cluster__0_5 [style=invisible]
 		cluster__2_1 -> cluster__0_5
-		"20_n:0" [label="n:0"]
-		"21_result:0" [label="result:0"]
+		"26_n:0" [label="n:0"]
+		"27_res:0" [label="res:0"]
 	}
 }

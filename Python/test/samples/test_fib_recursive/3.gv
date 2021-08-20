@@ -16,6 +16,6 @@ digraph root {
 		cluster__1_2 [style=invisible]
 		cluster__2_1 -> cluster__1_2
 		"8_n:1" [label="n:1"]
-		"9_result:1" [label="result:1"]
+		"9_res:1" [label="res:1"]
 	}
 }

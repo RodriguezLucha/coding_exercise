@@ -10,6 +10,13 @@ digraph root {
 		cluster__2_1 [style=invisible]
 		cluster__3_0 -> cluster__2_1
 		"11_n:2" [label="n:2"]
-		"12_fib_minus_1:1" [label="fib_minus_1:1"]
+		"12_fib-1:1" [label="fib-1:1"]
+	}
+	subgraph cluster__1_2 {
+		graph [color=lightgrey label="" style=filled]
+		cluster__1_2 [style=invisible]
+		cluster__2_1 -> cluster__1_2
+		"13_n:1" [label="n:1"]
+		"14_res:1" [label="res:1"]
 	}
 }

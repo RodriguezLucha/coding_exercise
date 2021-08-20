@@ -82,14 +82,19 @@ class GraphDrawer:
             graph_attr={"compound": "true"},
         )
 
-        self.graphs = [g for g in self.graphs if g.active]
+        # self.graphs = [g for g in self.graphs if g.active]
 
         for graph in self.graphs:
             subgraph_name = "cluster_" + str(graph.name)
+            graph_attributes = {
+                "label": "",
+            }
+            if not graph.active:
+                graph_attributes["style"] = "filled"
+                graph_attributes["color"] = "lightgrey"
+
             subgraph = Digraph(
-                graph_attr={
-                    "label": "",
-                },
+                graph_attr=graph_attributes,
                 name=subgraph_name,
             )
             subgraph.node(style="invisible", name=subgraph_name)

@@ -3,8 +3,38 @@ digraph root {
 	subgraph cluster__3_0 {
 		graph [label=""]
 		cluster__3_0 [style=invisible]
-		"40_n:3" [label="n:3"]
-		"41_fib_minus_1:1" [label="fib_minus_1:1"]
-		"42_fib_minus_2:1" [label="fib_minus_2:1"]
+		"78_n:3" [label="n:3"]
+		"79_fib-1:1" [label="fib-1:1"]
+		"80_fib-2:1" [label="fib-2:1"]
+	}
+	subgraph cluster__2_1 {
+		graph [color=lightgrey label="" style=filled]
+		cluster__2_1 [style=invisible]
+		cluster__3_0 -> cluster__2_1
+		"81_n:2" [label="n:2"]
+		"82_fib-1:1" [label="fib-1:1"]
+		"83_fib-2:0" [label="fib-2:0"]
+		"84_res:1" [label="res:1"]
+	}
+	subgraph cluster__1_2 {
+		graph [color=lightgrey label="" style=filled]
+		cluster__1_2 [style=invisible]
+		cluster__2_1 -> cluster__1_2
+		"85_n:1" [label="n:1"]
+		"86_res:1" [label="res:1"]
+	}
+	subgraph cluster__0_5 {
+		graph [color=lightgrey label="" style=filled]
+		cluster__0_5 [style=invisible]
+		cluster__2_1 -> cluster__0_5
+		"87_n:0" [label="n:0"]
+		"88_res:0" [label="res:0"]
+	}
+	subgraph cluster__1_10 {
+		graph [color=lightgrey label="" style=filled]
+		cluster__1_10 [style=invisible]
+		cluster__3_0 -> cluster__1_10
+		"89_n:1" [label="n:1"]
+		"90_res:1" [label="res:1"]
 	}
 }
