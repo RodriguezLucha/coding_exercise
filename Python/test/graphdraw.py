@@ -1,22 +1,14 @@
 import os
 import shutil
 from graphviz import Digraph
-
-import random
-import string
-
-
-def get_random_string(length):
-    # choose from all lowercase letter
-    letters = string.ascii_lowercase
-    result_str = "".join(random.choice(letters) for i in range(length))
-    return result_str
+from test.html_string import make_html
 
 
 class GraphDrawer:
     def __init__(self, callers__filename__):
         self.make_directory(callers__filename__)
-        self.counter = 0
+        self.graph_counter = 0
+        self.node_counter = 0
         self.variables = {}
         self.graphs = []
 
@@ -50,8 +42,8 @@ class GraphDrawer:
         self.make_html()
 
     def make_diagram(self, graph):
-        filename = self.dir + os.path.sep + str(self.counter) + ".gv"
-        self.counter += 1
+        filename = self.dir + os.path.sep + str(self.graph_counter) + ".gv"
+        self.graph_counter += 1
         graph.format = "svg"
         graph.filename = filename
         graph.render()
@@ -63,55 +55,9 @@ class GraphDrawer:
 
         html_filename = self.dir + os.path.sep + "index.html"
         self.html_filename = html_filename
-        list_string = ",".join([f"'./{i}.gv.svg'" for i in range(self.counter)])
+        list_string = ",".join([f"'./{i}.gv.svg'" for i in range(self.graph_counter)])
 
-        html_content = (
-            """
-            <!DOCTYPE html>
-                <html>
-                  <body>
-                    <h3 id="image_name">./0.gv.svg</h3>
-                    <div class="container">
-                      <div id="slideshow">
-                        <img src="./0.gv.svg" id="imgClickAndChange" onclick="changeImage()" />
-                      </div>
-                    </div>
-                    <script>
-                      var images_array = ["""
-            + list_string
-            + """]
-                      var index = 0
-
-                      function changeImage (dir) {
-                        var image_element = document.getElementById('imgClickAndChange')
-
-                        if (index + dir >= images_array.length) {
-                          index = 0
-                        } else if (index + dir < 0) {
-                          index = images_array.length - 1
-                        } else {
-                          index = index + dir
-                        }
-
-                        image_element.src = images_array[index]
-
-                        var image_name = document.getElementById('image_name')
-                        image_name.innerHTML = images_array[index]
-                      }
-
-                      document.onkeydown = function (e) {
-                        e = e || window.event
-                        if (e.keyCode == '37') {
-                          changeImage(-1)
-                        } else if (e.keyCode == '39') {
-                          changeImage(1)
-                        }
-                      }
-                    </script>
-                  </body>
-                </html>
-            """
-        )
+        html_content = make_html(list_string)
         file = open(html_filename, "w")
         file.write(html_content)
         file.close
@@ -120,33 +66,43 @@ class GraphDrawer:
         print(self.html_filename)
 
     def add_graph(self, graph):
+        graph.name = "_" + str(graph.name) + "_" + str(self.graph_counter)
         self.graphs.append(graph)
-        pass
+
+    def get_node_count(self):
+        return self.node_counter
+
+    def increment_node_count(self):
+        self.node_counter += 1
 
     def draw_all(self):
 
         root_graph = Digraph(
-            # node_attr={
-            #     "shape": "square",
-            # },
             name="root",
             graph_attr={"compound": "true"},
         )
 
+        self.graphs = [g for g in self.graphs if g.active]
+
         for graph in self.graphs:
+            subgraph_name = "cluster_" + str(graph.name)
             subgraph = Digraph(
                 graph_attr={
                     "label": "",
-                    # "style": "filled",
-                    # "color": "lightgrey",
                 },
-                name="cluster_" + str(graph.name) + str(get_random_string(5)),
+                name=subgraph_name,
             )
-            subgraph.node(style="invisible", name=str(graph.name))
+            subgraph.node(style="invisible", name=subgraph_name)
+            parent_graph = graph.parent
+            if parent_graph:
+                parent_graph_name = "cluster_" + str(parent_graph.name)
+                subgraph.edge(parent_graph_name, subgraph_name)
 
             for key, value in graph.variables.items():
                 label = str(f"{key}:{value}")
-                subgraph.node(name=label, label=label)
+                unique_name = f"{self.node_counter}_{label}"
+                self.node_counter += 1
+                subgraph.node(name=unique_name, label=label)
 
             root_graph.subgraph(subgraph)
 
@@ -157,52 +113,16 @@ class GraphDrawer:
 
 
 class Graph:
-    def __init__(self, name, parent):
+    def __init__(self, name, parent, gd):
         self.name = name
         self.parent = parent
         self.variables = {}
-        self.removed = False
+        self.active = True
+        self.gd = gd
 
     def add_variables(self, variables):
         for key, value in variables.items():
             self.variables[key] = value
 
     def remove(self):
-        self.removed = True
-
-
-# graph = Digraph(node_attr={"shape": "square"})
-#     for letter in ["1", "2", "3", "4"]:
-#         graph.node(letter)
-#         filename = "test.gv"
-
-#     graph.node("L", shape="circle")
-#     graph.node("R", shape="circle")
-#     graph.edge("L", "1")
-#     graph.edge("R", "4")
-
-#     grouping = Digraph(name=None, comment=None, graph_attr={"rank": "same"})
-#     grouping.node("1")
-#     grouping.node("2")
-#     grouping.node("3")
-#     grouping.node("4")
-
-#     graph.subgraph(grouping)
-
-#     f = open(filename, "w")
-#     print(graph.source)
-#     f.write(graph.source)
-#     f.close()
-
-
-# digraph {
-# 	node [shape=square]
-# 	0
-# 	1
-# 	2
-# 	3
-# 	node [shape=circle]
-# 	L -> 0
-# 	R -> 3
-# 	{rank = same; 0; 1; 2; 3;}
-# }
+        self.active = False

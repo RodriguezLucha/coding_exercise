@@ -1,4 +1,6 @@
-
+def make_html(list_string):
+    html_content = (
+        """
         <!DOCTYPE html>
             <html>
               <body>
@@ -9,7 +11,9 @@
                   </div>
                 </div>
                 <script>
-                  var images_array = ['./0.gv.svg','./1.gv.svg','./2.gv.svg','./3.gv.svg','./4.gv.svg','./5.gv.svg','./6.gv.svg','./7.gv.svg','./8.gv.svg','./9.gv.svg','./10.gv.svg','./11.gv.svg','./12.gv.svg','./13.gv.svg']
+                  var images_array = ["""
+        + list_string
+        + """]
                   var index = 0
 
                   function changeImage (dir) {
@@ -40,4 +44,6 @@
                 </script>
               </body>
             </html>
-        
+        """
+    )
+    return html_content

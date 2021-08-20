@@ -1,52 +1,10 @@
 digraph root {
 	graph [compound=true]
-	subgraph cluster_4rilep {
+	subgraph cluster__3_0 {
 		graph [label=""]
-		4 [style=invisible]
-		"n:4" [label="n:4"]
-		"result:3" [label="result:3"]
-	}
-	subgraph cluster_3aufuo {
-		graph [label=""]
-		3 [style=invisible]
-		"n:3" [label="n:3"]
-		"result:2" [label="result:2"]
-	}
-	subgraph cluster_2ommgz {
-		graph [label=""]
-		2 [style=invisible]
-		"n:2" [label="n:2"]
-		"result:1" [label="result:1"]
-	}
-	subgraph cluster_1avaoq {
-		graph [label=""]
-		1 [style=invisible]
-		"n:1" [label="n:1"]
-	}
-	subgraph cluster_0bndfs {
-		graph [label=""]
-		0 [style=invisible]
-		"n:0" [label="n:0"]
-	}
-	subgraph cluster_1fbamw {
-		graph [label=""]
-		1 [style=invisible]
-		"n:1" [label="n:1"]
-	}
-	subgraph cluster_2qylye {
-		graph [label=""]
-		2 [style=invisible]
-		"n:2" [label="n:2"]
-		"result:1" [label="result:1"]
-	}
-	subgraph cluster_1yterd {
-		graph [label=""]
-		1 [style=invisible]
-		"n:1" [label="n:1"]
-	}
-	subgraph cluster_0vknks {
-		graph [label=""]
-		0 [style=invisible]
-		"n:0" [label="n:0"]
+		cluster__3_0 [style=invisible]
+		"40_n:3" [label="n:3"]
+		"41_fib_minus_1:1" [label="fib_minus_1:1"]
+		"42_fib_minus_2:1" [label="fib_minus_2:1"]
 	}
 }

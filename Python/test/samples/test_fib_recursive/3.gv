@@ -1,23 +1,21 @@
 digraph root {
 	graph [compound=true]
-	subgraph cluster_4ritsb {
+	subgraph cluster__3_0 {
 		graph [label=""]
-		4 [style=invisible]
-		"n:4" [label="n:4"]
+		cluster__3_0 [style=invisible]
+		"6_n:3" [label="n:3"]
 	}
-	subgraph cluster_3tjpaz {
+	subgraph cluster__2_1 {
 		graph [label=""]
-		3 [style=invisible]
-		"n:3" [label="n:3"]
+		cluster__2_1 [style=invisible]
+		cluster__3_0 -> cluster__2_1
+		"7_n:2" [label="n:2"]
 	}
-	subgraph cluster_2vfhnc {
+	subgraph cluster__1_2 {
 		graph [label=""]
-		2 [style=invisible]
-		"n:2" [label="n:2"]
-	}
-	subgraph cluster_1taocq {
-		graph [label=""]
-		1 [style=invisible]
-		"n:1" [label="n:1"]
+		cluster__1_2 [style=invisible]
+		cluster__2_1 -> cluster__1_2
+		"8_n:1" [label="n:1"]
+		"9_result:1" [label="result:1"]
 	}
 }

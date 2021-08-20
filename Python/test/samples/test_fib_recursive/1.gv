@@ -1,13 +1,14 @@
 digraph root {
 	graph [compound=true]
-	subgraph cluster_4mirgc {
+	subgraph cluster__3_0 {
 		graph [label=""]
-		4 [style=invisible]
-		"n:4" [label="n:4"]
+		cluster__3_0 [style=invisible]
+		"1_n:3" [label="n:3"]
 	}
-	subgraph cluster_3wrmte {
+	subgraph cluster__2_1 {
 		graph [label=""]
-		3 [style=invisible]
-		"n:3" [label="n:3"]
+		cluster__2_1 [style=invisible]
+		cluster__3_0 -> cluster__2_1
+		"2_n:2" [label="n:2"]
 	}
 }

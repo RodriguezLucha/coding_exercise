@@ -1,0 +1,11 @@
+digraph root {
+	graph [compound=true]
+	subgraph cluster__3_0 {
+		graph [label=""]
+		cluster__3_0 [style=invisible]
+		"43_n:3" [label="n:3"]
+		"44_fib_minus_1:1" [label="fib_minus_1:1"]
+		"45_fib_minus_2:1" [label="fib_minus_2:1"]
+		"46_result:2" [label="result:2"]
+	}
+}

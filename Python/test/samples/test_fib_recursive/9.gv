@@ -1,45 +1,9 @@
 digraph root {
 	graph [compound=true]
-	subgraph cluster_4lchbv {
+	subgraph cluster__3_0 {
 		graph [label=""]
-		4 [style=invisible]
-		"n:4" [label="n:4"]
-	}
-	subgraph cluster_3idesq {
-		graph [label=""]
-		3 [style=invisible]
-		"n:3" [label="n:3"]
-		"result:2" [label="result:2"]
-	}
-	subgraph cluster_2cuoky {
-		graph [label=""]
-		2 [style=invisible]
-		"n:2" [label="n:2"]
-		"result:1" [label="result:1"]
-	}
-	subgraph cluster_1ggrsg {
-		graph [label=""]
-		1 [style=invisible]
-		"n:1" [label="n:1"]
-	}
-	subgraph cluster_0coerm {
-		graph [label=""]
-		0 [style=invisible]
-		"n:0" [label="n:0"]
-	}
-	subgraph cluster_1vfvzq {
-		graph [label=""]
-		1 [style=invisible]
-		"n:1" [label="n:1"]
-	}
-	subgraph cluster_2xzrjr {
-		graph [label=""]
-		2 [style=invisible]
-		"n:2" [label="n:2"]
-	}
-	subgraph cluster_1qjcbe {
-		graph [label=""]
-		1 [style=invisible]
-		"n:1" [label="n:1"]
+		cluster__3_0 [style=invisible]
+		"31_n:3" [label="n:3"]
+		"32_fib_minus_1:1" [label="fib_minus_1:1"]
 	}
 }

@@ -7,20 +7,26 @@ def my_draw_fib(n):
 
     def recursive_fib(n, graph):
 
-        g = Graph(name=n, parent=graph)
+        g = Graph(name=n, parent=graph, gd=gd)
         g.add_variables({"n": n})
         gd.add_graph(g)
         gd.draw_all()
 
         if n <= 1:
-            return n
-
-        result = recursive_fib(n - 1, g) + recursive_fib(n - 2, g)
+            result = n
+        else:
+            fib_minus_1 = recursive_fib(n - 1, g)
+            g.add_variables({"fib_minus_1": fib_minus_1})
+            gd.draw_all()
+            fib_minus_2 = recursive_fib(n - 2, g)
+            g.add_variables({"fib_minus_2": fib_minus_2})
+            gd.draw_all()
+            result = fib_minus_1 + fib_minus_2
 
         g.add_variables({"result": result})
-        g.remove()
         gd.draw_all()
 
+        g.remove()
         return result
 
     solution = recursive_fib(n, None)
@@ -29,7 +35,7 @@ def my_draw_fib(n):
 
 
 def test_draw_fib():
-    n = 4
-    expected = 3
+    n = 3
+    expected = 2
     actual = my_draw_fib(n)
     assert actual == expected

@@ -1,8 +1,8 @@
 digraph root {
 	graph [compound=true]
-	subgraph cluster_4nmvvv {
+	subgraph cluster__3_0 {
 		graph [label=""]
-		4 [style=invisible]
-		"n:4" [label="n:4"]
+		cluster__3_0 [style=invisible]
+		"0_n:3" [label="n:3"]
 	}
 }
