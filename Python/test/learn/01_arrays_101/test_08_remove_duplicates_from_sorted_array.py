@@ -1,6 +1,3 @@
-from test.graphdraw import GraphDrawer
-
-
 def remove_duplicates_from_sorted_array(nums):
 
     if nums == []:
@@ -9,27 +6,18 @@ def remove_duplicates_from_sorted_array(nums):
     slow_pointer = 0
     fast_pointer = 1
 
-    gd = GraphDrawer(__file__)
-
-    def draw():
-        gd.draw(array=nums, indexes={"slow": slow_pointer, "fast": fast_pointer})
-
     while fast_pointer < len(nums):
-        draw()
 
         fast_element = nums[fast_pointer]
         slow_element = nums[slow_pointer]
 
         if fast_element != slow_element:
             slow_pointer += 1
-            draw()
             nums[slow_pointer] = fast_element
-            draw()
 
         if fast_pointer < len(nums):
             fast_pointer += 1
 
-    gd.print_filename()
     return slow_pointer + 1
 
 

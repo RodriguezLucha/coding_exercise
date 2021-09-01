@@ -1,26 +1,14 @@
-from test.graphdraw import GraphDrawer
-
-
 def move_the_zeros(nums):
-    gd = GraphDrawer(__file__)
 
     last_non_zero_found_at = 0
     current = 0
 
-    def d():
-        gd.draw(
-            array=nums, indexes={"current": current, "last": last_non_zero_found_at}
-        )
-
     while current < len(nums):
-        d()
         if nums[current] != 0:
             temp = nums[last_non_zero_found_at]
             nums[last_non_zero_found_at] = nums[current]
             nums[current] = temp
-            d()
             last_non_zero_found_at += 1
-            d()
 
         current += 1
 

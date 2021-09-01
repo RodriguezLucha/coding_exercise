@@ -1,8 +1,0 @@
-digraph root {
-	graph [compound=true]
-	subgraph cluster__3_0 {
-		graph [label=""]
-		cluster__3_0 [style=invisible]
-		"0_n:3" [label="n:3"]
-	}
-}
